@@ -1,0 +1,14 @@
+*.json
+*.pyc
+.env
+alembic/versions/*.py
+*.service
+*.log
+*.log.*
+*.session
+venv
+.idea
+__pycache__
+!/private_keys/.gitkeep
+/private_keys/*
+

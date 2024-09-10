@@ -1,0 +1,15 @@
+aiogram
+aiogram[i18n]
+APScheduler
+aiomysql
+python-dotenv
+SQLAlchemy
+alembic
+pydantic
+paramiko
+aioschedule
+humanize
+pymysql
+cryptography
+requests
+sqlalchemy-utils

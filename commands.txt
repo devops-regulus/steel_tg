@@ -1,0 +1,47 @@
+cd /projects/WorkingTimeCounter
+
+systemctl restart time_counter
+
+git pull
+
+alembic revision --autogenerate
+alembic upgrade head
+
+# install git
+sudo apt update
+sudo apt install git
+ssh-keygen
+
+#install pyenv
+sudo apt-get install python3-dev libreadline-dev libbz2-dev libssl-dev libsqlite3-dev libxslt1-dev libxml2-dev build-essential curl libbz2-dev libffi-dev liblzma-dev libncursesw5-dev libreadline-dev
+libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev llvm make tk-dev wget xz-utils zlib1g-dev
+curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+exec $SHELL
+pyenv update
+
+#PyEnv Create venv
+pyenv install 3.11.6
+pyenv virtualenv 3.11.6 time_counter
+pyenv local time_counter
+# install python packages
+pip install -r r.txt
+
+# installing mysql
+sudo apt install mysql-server
+sudo mysql_secure_installation
+sudo mysql -u root -p
+
+# create database
+CREATE DATABASE time_counter;
+
+# make migrations
+alembic revision --autogenerate
+alembic upgrade head
+
+# manage systemctl
+sudo systemctl enable time_counter
+sudo systemctl start time_counter
+sudo systemctl status time_counter
